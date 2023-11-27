@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const FooterContainer = styled.footer`
   background-color: #333;
@@ -12,7 +13,7 @@ const FooterContainer = styled.footer`
 const Description = styled.div`
   font-size: 16px;
   margin-bottom: 20px;
-  line-height: 1.5; /* Ajusta el interlineado según tus preferencias */
+  line-height: 1.5; 
 `;
 
 const Button = styled.button`
@@ -29,6 +30,12 @@ const RightsReserved = styled.p`
 `;
 
 const Footer = () => {
+  const navigate = useNavigate();
+
+  const handleContactUsClick = () => {
+    navigate('/contact');
+  };
+
   return (
     <FooterContainer>
       <Description>
@@ -40,7 +47,7 @@ const Footer = () => {
         </p>
       </Description>
       <div>
-        <Button>Contáctanos</Button>
+        <Button onClick={handleContactUsClick}>Contáctanos</Button>
       </div>
       <RightsReserved>&copy; 2023 Generación Z. Todos los derechos reservados.</RightsReserved>
     </FooterContainer>

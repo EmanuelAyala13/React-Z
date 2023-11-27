@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import FondoContacto from '../assets/FondoContacto.png';
 
@@ -6,8 +6,8 @@ const ContactFormContainer = styled.div`
   background-image: url(${FondoContacto});
   background-size: cover;
   background-position: center;
-  height: 100vh;
-  width: 100vw;
+  height: 100vh; 
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -43,17 +43,6 @@ const Textarea = styled.textarea`
   min-height: 80px;
 `;
 
-const PasswordContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 16px;
-`;
-
-const PasswordInput = styled.input`
-  flex: 1;
-  padding: 8px;
-`;
-
 const SubmitButton = styled.button`
   background-color: #61dafb;
   color: white;
@@ -63,47 +52,31 @@ const SubmitButton = styled.button`
 `;
 
 const ContactPage = () => {
-  const [password, setPassword] = useState('');
-
-  const handlePasswordChange = (e) => {
-    const newPassword = e.target.value;
-    setPassword(newPassword);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
   };
 
   return (
-    <ContactFormContainer>
-      <h2>Contacto</h2>
-      <Form onSubmit={handleSubmit}>
-        <Label htmlFor="nombre">Nombre:</Label>
-        <Input type="text" id="nombre" name="nombre" required />
+    <>
+      <ContactFormContainer>
+        <h2>Contacto</h2>
+        <Form onSubmit={handleSubmit}>
+          <Label htmlFor="nombre">Nombre:</Label>
+          <Input type="text" id="nombre" name="nombre" required />
 
-        <Label htmlFor="apellido">Apellido:</Label>
-        <Input type="text" id="apellido" name="apellido" required />
+          <Label htmlFor="apellido">Apellido:</Label>
+          <Input type="text" id="apellido" name="apellido" required />
 
-        <Label htmlFor="email">Email:</Label>
-        <Input type="email" id="email" name="email" required />
+          <Label htmlFor="email">Email:</Label>
+          <Input type="email" id="email" name="email" required />
 
-        <Label htmlFor="asunto">Asunto:</Label>
-        <Textarea id="asunto" name="asunto" required />
+          <Label htmlFor="asunto">Asunto:</Label>
+          <Textarea id="asunto" name="asunto" required />
 
-        <Label htmlFor="contrasena">Contraseña:</Label>
-        <PasswordContainer>
-          <PasswordInput
-            type="password"
-            id="contrasena"
-            name="contrasena"
-            onChange={handlePasswordChange}
-            required
-          />
-        </PasswordContainer>
-
-        <SubmitButton type="submit">Enviar</SubmitButton>
-      </Form>
-    </ContactFormContainer>
+          <SubmitButton type="submit">Enviar</SubmitButton>
+        </Form>
+      </ContactFormContainer>
+    </>
   );
 };
 
