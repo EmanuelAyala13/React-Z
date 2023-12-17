@@ -1,15 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Dodoria from '../assets/Dodoria_Funko.png';
-import FailedFusions from '../assets/Failed_Fusions_Funko.png';
-import GokuSsjBlue from '../assets/GokuSsjBlueFunkoPop.png';
-import PerfectCell from '../assets/Perfect_Cell_Funko.png';
-import Piccolo from '../assets/Piccolo_Funko.png';
-import Porunga from '../assets/Porunga_Funko.png';
-import Shenlong from '../assets/ShenlongFunkoPop.png';
-import Trunks from '../assets/TrunksFunkoPop.png';
-import VegetaRed from '../assets/VegetaRedFunkoPop.png';
-import Videl from '../assets/Videl_Funko.png';
+import ShoppingCartIcon from '../assets/CarritoCompras.png';
 
 const Container = styled.div`
   display: flex;
@@ -21,6 +12,23 @@ const Container = styled.div`
 const TitleContainer = styled.h1`
   text-align: center;
   color: red;
+`;
+
+const Introduction = styled.div`
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 2px solid #61dafb;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+`;
+
+const IntroductionText = styled.p`
+  font-size: 1.2em;
+  color: #333;
+  line-height: 1.6;
 `;
 
 const ProductCardContainer = styled.div`
@@ -71,32 +79,30 @@ const ShowMoreButton = styled.button`
   font-size: 16px;
 `;
 
-const MoreProducts = () => {
+const MoreProducts = ({ isHome, carrito, agregarAlCarrito }) => {
   const allProducts = [
-    { name: 'Dodoria Funko', image: Dodoria, price: 19.99 },
-    { name: 'Failed Fusions Funko', image: FailedFusions, price: 24.99 },
-    { name: 'Goku SSJ Blue Funko Pop', image: GokuSsjBlue, price: 29.99 },
-    { name: 'Perfect Cell Funko', image: PerfectCell, price: 22.99 },
-    { name: 'Piccolo Funko', image: Piccolo, price: 18.99 },
-    { name: 'Porunga Funko', image: Porunga, price: 27.99 },
-    { name: 'Shenlong Funko Pop', image: Shenlong, price: 32.99 },
-    { name: 'Trunks Funko Pop', image: Trunks, price: 26.99 },
-    { name: 'Vegeta Red Funko Pop', image: VegetaRed, price: 28.99 },
-    { name: 'Videl Funko', image: Videl, price: 20.99 },
+    { name: 'Dodoria Funko Pop', image: ShoppingCartIcon, price: 19.99 },
   ];
 
-  const [visibleProducts, setVisibleProducts] = useState(3);
+  const [visibleProducts, setVisibleProducts] = useState(isHome ? 3 : allProducts.length);
 
   const handleShowMore = () => {
     setVisibleProducts(allProducts.length);
   };
 
   const handleShowLess = () => {
-    setVisibleProducts(3);
+    setVisibleProducts(isHome ? 3 : allProducts.length);
   };
 
   return (
     <div>
+      {isHome && (
+        <Introduction>
+          <IntroductionText>
+            ¡Bienvenido a Generación Z! Explora nuestra selección de productos destacados y encuentra los artículos más buscados por los entusiastas de la Generación Z.
+          </IntroductionText>
+        </Introduction>
+      )}
       <TitleContainer>Productos Destacados</TitleContainer>
       <Container>
         {allProducts.slice(0, visibleProducts).map((product, index) => (
@@ -104,7 +110,7 @@ const MoreProducts = () => {
             <ProductImage src={product.image} alt={product.name} />
             <Title>{product.name}</Title>
             <Price>Precio: ${product.price}</Price>
-            <AddButton>Agregar al carrito</AddButton>
+            <AddButton onClick={() => agregarAlCarrito(product)}>Agregar al carrito</AddButton>
           </ProductCardContainer>
         ))}
       </Container>

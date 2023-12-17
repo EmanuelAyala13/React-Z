@@ -3,22 +3,23 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 100%; 
-  margin: 0; 
+  height: 100%;
+  margin: 0;
 }
+
 .App-header {
   text-align: center;
 }
 
 .App-header h1 {
-  color: #ffffff; 
-  transition: color 0.5s; 
-  cursor: pointer; 
+  color: #ffffff;
+  transition: color 0.5s;
+  cursor: pointer;
 }
 
 .App-header h1:hover {
-  color: rgb(255, 0, 0); 
-  animation: colorChange 2s infinite; 
+  color: rgb(255, 0, 0);
+  animation: colorChange 2s infinite;
 }
 
 @keyframes colorChange {
@@ -50,6 +51,7 @@ body {
     transform: translateY(-10px);
   }
 }
+
 nav {
   background-color: #282c34;
   padding: 10px;
@@ -66,29 +68,30 @@ nav {
 
 .menu-items {
   position: absolute;
-  top: 60px; 
-  left: 0; 
+  top: 60px;
+  left: 0;
   background-color: #282c34;
   padding: 10px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; 
-  width: 100%; 
+  align-items: flex-start;
+  width: 100%;
 }
 
 .menu-items div {
   color: white;
   cursor: pointer;
   margin-bottom: 10px;
-  text-align: left; 
+  text-align: left;
 }
+
 @media screen and (min-width: 1200px) {
   .menu-items {
-    flex-direction: row; 
+    flex-direction: row;
   }
 
   .menu-items div {
-    margin-right: 20px; 
+    margin-right: 20px;
   }
 }
 
@@ -116,4 +119,16 @@ nav {
   .menu-items div {
     margin-bottom: 10px;
   }
+}
+
+.ProductContainer {
+  display: flex;
+  align-items: flex-start;
+  margin: 10px;
+}
+
+.ProductDescription {
+  color: #333;
+  margin-left: 20px;
+  max-width: 400px;
 }

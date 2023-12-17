@@ -1,7 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import MenuContext from './MenuContext';
+import ShoppingCartIcon from '../assets/CarritoCompras.png';
+import Carrito from './Carrito';
 
 const Nav = styled.nav`
   background-color: #333;
@@ -29,6 +31,7 @@ const MenuButton = styled.button`
 const NavbarLinks = styled.div`
   display: flex;
   gap: 20px;
+  align-items: center;
 
   a {
     color: white;
@@ -38,6 +41,16 @@ const NavbarLinks = styled.div`
 
     &:hover {
       color: #61dafb;
+    }
+  }
+
+  img {
+    width: 30px;
+    cursor: pointer;
+    transition: transform 0.3s;
+
+    &:hover {
+      transform: scale(1.1);
     }
   }
 `;
@@ -76,16 +89,16 @@ const MenuContent = styled.div`
 
 const Navbar = () => {
   const { menuOpen, toggleMenu } = useContext(MenuContext);
+  const [carritoOpen, setCarritoOpen] = useState(false);
+
+  const toggleCarrito = () => {
+    setCarritoOpen(!carritoOpen);
+  };
 
   return (
     <>
       <Nav>
         <MenuButton onClick={toggleMenu}>Menú</MenuButton>
-        <NavbarLinks>
-          <Link to="/">Inicio</Link>
-          <Link to="/about-us">Nosotros</Link>
-          <Link to="/contact">Contacto</Link>
-        </NavbarLinks>
       </Nav>
 
       <MenuContainer open={menuOpen} onClick={toggleMenu}>
@@ -93,8 +106,22 @@ const Navbar = () => {
           <Link to="/">Inicio</Link>
           <Link to="/about-us">Nosotros</Link>
           <Link to="/contact">Contacto</Link>
+          <Link to="/productos">Productos</Link>
         </MenuContent>
       </MenuContainer>
+
+      <NavbarLinks>
+        <div>
+          <Link to="/">Inicio</Link>
+          <Link to="/about-us">Nosotros</Link>
+          <Link to="/contact">Contacto</Link>
+          <Link to="/productos">Productos</Link>
+        </div>
+        <div onClick={toggleCarrito}>
+          <img src={ShoppingCartIcon} alt="Carrito de Compras" />
+          {carritoOpen && <Carrito />}
+        </div>
+      </NavbarLinks>
     </>
   );
 };

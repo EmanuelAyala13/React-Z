@@ -1,9 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import FondoAboutUs from '../assets/AboutUsFondo.png';
 
 const AboutUsContainer = styled.div`
-  background-image: url(${FondoAboutUs});
   background-size: 100% 100%;
   background-position: center;
   height: 100vh;
@@ -22,10 +20,9 @@ const AnimatedH2 = styled.h2`
   animation: fadeIn 2s ease;
   transition: color 0.5s;
   &:hover {
-    color: rgb(255, 0, 0);
+    color: #ff0000; 
   }
 `;
-
 
 const Presentation = styled.div`
   max-width: 800px;
@@ -33,9 +30,10 @@ const Presentation = styled.div`
   font-size: 1.5em;
   line-height: 1.6;
   animation: slideIn 2s ease;
-  color: rgba(255, 255, 255, 0.8); 
+  color: rgba(255, 255, 255, 0.9); 
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+  background-color: rgba(0, 0, 0, 1);
 `;
-
 
 const AboutUs = () => {
   return (
